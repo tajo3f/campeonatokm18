@@ -19,16 +19,9 @@
     const phone=digits(data.phone);
     if(phone.length<10 || phone.length>11) return 'Informe um WhatsApp válido com DDD.';
     if(!Array.isArray(data.players) || data.players.length<1) return 'Adicione pelo menos 1 jogador.';
-    if(data.players.length>60) return 'O limite desta ficha é de 60 jogadores.';
-    const used=new Set();
     for(let i=0;i<data.players.length;i++){
       const p=data.players[i]||{};
       if(!String(p.name||'').trim()) return `Informe o nome do jogador ${i+1}.`;
-      const n=Number(p.number);
-      if(!Number.isInteger(n)||n<0||n>99) return `O número do jogador ${i+1} deve estar entre 0 e 99.`;
-      if(used.has(n)) return `O número ${n} está repetido. Cada jogador precisa ter um número diferente.`;
-      used.add(n);
-      if(p.shirt_size && !['P','M','G','GG','XG'].includes(p.shirt_size)) return `Tamanho de camisa inválido no jogador ${i+1}.`;
     }
     return null;
   }

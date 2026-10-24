@@ -27,8 +27,7 @@
   }
 
   function addPlayer(data={}){
-    if(players.children.length>=60){toast('O limite desta ficha é de 60 jogadores.','warn');return;}
-    const card=document.createElement('div'); card.className='player';
+        const card=document.createElement('div'); card.className='player';
     card.innerHTML=`
       <div class="playerHead">
         <strong class="playerNumber"></strong>
@@ -36,13 +35,6 @@
       </div>
       <div class="playerGrid">
         <label>Nome do jogador *<input class="pname" maxlength="100" required placeholder="Nome completo" value="${escapeHtml(data.name||'')}"></label>
-        <label>Número *<input class="pnumber" inputmode="numeric" type="number" min="0" max="99" required placeholder="10" value="${escapeHtml(data.number??'')}"></label>
-        <label>Tamanho da camisa
-          <select class="psize">
-            <option value="">Opcional</option>
-            ${['P','M','G','GG','XG'].map(x=>`<option value="${x}" ${data.shirt_size===x?'selected':''}>${x}</option>`).join('')}
-          </select>
-        </label>
       </div>`;
     card.querySelector('.remove').addEventListener('click',()=>{
       if(players.children.length===1){toast('A equipe precisa ter pelo menos 1 jogador.','warn');return;}
@@ -50,6 +42,7 @@
     });
     card.addEventListener('input',saveDraft); card.addEventListener('change',saveDraft);
     players.appendChild(card);renumberCards();saveDraft();
+    if(players.children.length===16) toast('Atenção: o recomendado é cadastrar até 15 jogadores. Você pode continuar, mas confira com a organização do campeonato.','warn');
   }
 
   function collect(){
@@ -59,9 +52,7 @@
       phone:$('#phone').value.trim(),
       community:$('#community').value.trim(),
       players:[...players.querySelectorAll('.player')].map(card=>({
-        name:card.querySelector('.pname').value.trim(),
-        number:Number(card.querySelector('.pnumber').value),
-        shirt_size:card.querySelector('.psize').value||null
+        name:card.querySelector('.pname').value.trim()
       }))
     };
   }
@@ -121,6 +112,7 @@
     e.preventDefault();
     if(!form.reportValidity()){toast('Confira os campos obrigatórios.','warn');return;}
     const data=collect();const error=Core.validateRegistration(data);if(error){toast(error,'warn');return;}
+    if(data.players.length>15){toast(`Atenção: foram cadastrados ${data.players.length} jogadores. O recomendado é até 15; a ficha será gerada normalmente.`,'warn');}
     const button=$('#submit');button.disabled=true;button.textContent='GERANDO PDF...';
     try{
       const code=Core.makeRegistrationCode();const generatedAt=Core.formatDateTime(new Date());

@@ -4,8 +4,8 @@ Versão final estática, sem banco de dados, sem Supabase, sem backend e sem API
 
 ## Como funciona
 1. O responsável preenche os dados da equipe.
-2. Adiciona jogadores, número e tamanho de camisa opcional.
-3. O sistema valida os dados e bloqueia números repetidos.
+2. Adiciona os jogadores pelo nome.
+3. O sistema recomenda até 15 jogadores, mas não bloqueia a geração da ficha se esse total for ultrapassado.
 4. O PDF é gerado 100% no navegador.
 5. O botão **Compartilhar PDF** usa o compartilhamento nativo do celular.
 6. O botão **Abrir WhatsApp Oficial** abre a conversa com (27) 99779-6977 e uma mensagem pronta.

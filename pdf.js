@@ -43,16 +43,12 @@
     s+=box(36,startY,523,26,.10,.18,.09);
     s+=t(48,startY+9,9,'#','F2',.55,1,.22);
     s+=t(78,startY+9,9,'JOGADOR','F2',.55,1,.22);
-    s+=t(450,startY+9,9,'NUMERO','F2',.55,1,.22);
-    s+=t(510,startY+9,9,'CAMISA','F2',.55,1,.22);
     let y=startY-24;
     rows.forEach((p,i)=>{
       const globalIndex=p.__index;
       if(i%2===0) s+=box(36,y-5,523,24,.045,.075,.04);
       s+=t(48,y+2,9,String(globalIndex+1),'F1',.86,.93,.84);
       s+=t(78,y+2,9,p.name,'F1',.96,1,.94);
-      s+=t(468,y+2,9,String(p.number),'F2',.96,1,.94);
-      s+=t(523,y+2,9,p.shirt_size||'-','F1',.86,.93,.84);
       s+=line(36,y-8,559,y-8,.12,.20,.11,.4);
       y-=25;
     });
