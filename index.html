@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071007">
+  <meta name="description" content="Ficha oficial para envio de dados das equipes do Campeonato Society KM18.">
+  <title>Campeonato Society KM18 — Ficha de Equipe</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="hero" aria-label="Campeonato Society KM18">
+    <div class="heroShade"></div>
+    <div class="heroContent">
+      <span class="eyebrow">CAMPEONATO MASCULINO</span>
+      <h1>CAMPEONATO <b>SOCIETY</b><small>KM 18</small></h1>
+      <p>Envio oficial dos dados das equipes</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card intro">
+      <span class="step">FICHA DA EQUIPE</span>
+      <h2>Envie os dados do seu time</h2>
+      <p>Preencha os dados, revise os jogadores e gere a ficha em PDF. Depois, compartilhe o arquivo com a organização.</p>
+      <div class="official"><span>WhatsApp oficial</span><strong>(27) 99779-6977</strong></div>
+    </section>
+
+    <form id="form" novalidate autocomplete="on">
+      <section class="card">
+        <div class="sectionTitle"><span>01</span><div><h3>EQUIPE</h3><p>Dados principais do time.</p></div></div>
+        <label>Nome da equipe *
+          <input id="team" maxlength="80" required placeholder="Ex.: Unidos do KM18" autocomplete="organization">
+        </label>
+        <div class="grid">
+          <label>Técnico / responsável *
+            <input id="coach" maxlength="100" required placeholder="Nome completo" autocomplete="name">
+          </label>
+          <label>WhatsApp do responsável *
+            <input id="phone" inputmode="tel" maxlength="16" required placeholder="(27) 99999-9999" autocomplete="tel">
+          </label>
+        </div>
+        <label>Cidade / comunidade
+          <input id="community" maxlength="100" placeholder="Opcional">
+        </label>
+      </section>
+
+      <section class="card">
+        <div class="playersTitle">
+          <div class="sectionTitle"><span>02</span><div><h3>JOGADORES</h3><p>Nome e número são obrigatórios. Tamanho da camisa é opcional.</p></div></div>
+          <button type="button" class="btnSecondary" id="add">+ Adicionar jogador</button>
+        </div>
+        <div id="players" aria-live="polite"></div>
+        <button type="button" class="btnAddWide" id="addBottom">+ ADICIONAR OUTRO JOGADOR</button>
+      </section>
+
+      <section class="card reviewCard">
+        <div class="sectionTitle"><span>03</span><div><h3>REVISÃO E PDF</h3><p>Confira tudo antes de gerar a ficha.</p></div></div>
+        <label class="check">
+          <input type="checkbox" id="confirm" required>
+          <span>Confirmo que revisei os dados da equipe e dos jogadores.</span>
+        </label>
+        <button class="btnPrimary" id="submit" type="submit">GERAR FICHA EM PDF</button>
+        <p class="legal">O PDF é criado no próprio aparelho. Nenhum dado é enviado para banco de dados ou servidor.</p>
+      </section>
+    </form>
+
+    <section class="card success" id="success" hidden aria-live="polite">
+      <div class="successIcon">✓</div>
+      <span class="step">PDF GERADO</span>
+      <h2>Ficha pronta para envio</h2>
+      <p id="successText"></p>
+      <div class="codeBox"><span>Código da ficha</span><strong id="registrationCode"></strong></div>
+      <div class="actionGrid">
+        <button class="btnPrimary" id="sharePdf" type="button">📲 COMPARTILHAR PDF</button>
+        <button class="btnWhats" id="openWhatsapp" type="button">💬 ABRIR WHATSAPP OFICIAL</button>
+        <button class="btnSecondary big" id="downloadPdf" type="button">⬇ BAIXAR PDF</button>
+        <button class="btnGhost big" id="newRegistration" type="button">NOVA EQUIPE</button>
+      </div>
+      <p class="hint">No celular, toque em <b>Compartilhar PDF</b> e escolha o WhatsApp. Se o aparelho não permitir compartilhar arquivos pelo navegador, baixe o PDF e envie pelo WhatsApp oficial.</p>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <footer>CAMPEONATO SOCIETY KM18 • AFONSO CLÁUDIO — ES</footer>
+
+  <script src="./core.js"></script>
+  <script src="./pdf.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
